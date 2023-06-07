@@ -4,6 +4,7 @@ File with utility functions.
 """
 
 import os
+import pickle
 import zipfile
 
 import numpy as np
@@ -14,6 +15,7 @@ from pyquery import PyQuery as pq
 
 CACHE_FOLDER = "__mycache__"
 DATA_PATH = f'./{CACHE_FOLDER}/data.fthr'
+EMBEDDINGS_PATH = f'./{CACHE_FOLDER}/embeddings.pkl'
 HTML_FILE = "Frequently Asked Questions about the GNU Licenses.html"
 HTML_PATH = f'./{CACHE_FOLDER}/{HTML_FILE}'
 ZIP_PATH = "./data/gnu-faq.zip"
@@ -48,6 +50,25 @@ def get_data():
   feather.write_feather(data_df, DATA_PATH)
 
   return data_df
+
+
+def get_embeddings(sbert_model, phrases):
+  # Check if the embeddings are already available on the cache.
+  if os.path.exists(EMBEDDINGS_PATH):
+    try:
+      with open(EMBEDDINGS_PATH, "rb") as fIn:
+        cache_embeddings = pickle.load(fIn)  
+        return cache_embeddings
+    except:
+      pass
+    
+  # Generate embeddings and store them.
+  embeddings = sbert_model.encode(phrases)
+  
+  with open(EMBEDDINGS_PATH, "wb") as fOut:
+    pickle.dump(embeddings, fOut, protocol=pickle.HIGHEST_PROTOCOL)
+  
+  return embeddings
 
 
 # Parses the content of a HTML file.
