@@ -2,6 +2,8 @@
 
 This repository contains examples of Chatbots implemented with Python using Matchine Learning techniques and tools.
 
+* The `/gnu-licenses` folder implements a chatbot that uses the [GNU's Frequently Asked Questions site](https://www.gnu.org/licenses/gpl-faq.html) to answer questions about GNU Licenses.
+
 License
 -------
 
