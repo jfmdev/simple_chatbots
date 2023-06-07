@@ -1,41 +1,54 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jun  7 11:46:35 2023
-
-@author: jofma
+Main application file.
 """
 
-# Import dependencies.
+# Import dependencies and define constants.
 import nltk
 nltk.download('punkt')
 from sentence_transformers import SentenceTransformer
 
+from colorama import just_fix_windows_console as colorama_init
+from colorama import Fore
+colorama_init()
+
 from util import cosine_similarity, get_data, get_embeddings
 
-# Load data and model (if need).
-sbert_model = SentenceTransformer('bert-base-nli-mean-tokens')
+SOURCE_URL = 'https://www.gnu.org/licenses/gpl-faq.html'
+
+# Load data and model.
+sbert_model = SentenceTransformer('all-MiniLM-L6-v2')
 
 data_df = get_data()
 questions = data_df['question'].to_numpy()
 embeddings = get_embeddings(sbert_model, questions)
 
-# Test model.
-query = "All GNU software use the GNU GPL?"
-query_vec = sbert_model.encode([query])[0]
+# Print welcome message and wait for questions.
+print(f'{Fore.CYAN}')
+print("Hello! What do you want to know about GNU Licenses?")
+print("(write 'exit' once you run out of questions)")
+print(f'{Fore.RESET}')
 
-best_value = 0
-best_index = None
-for index, question in enumerate(questions):
-  question_vec = embeddings[index]
-  sim = cosine_similarity(query_vec, question_vec)
-  print("\nQuestion = ", question, " |  Similarity = ", sim)
-  
-  if(best_value < sim):
-    best_value = sim
-    best_index = index
+query = ''
+while query != 'exit':
+  # Check that query isn't empty.
+  if query.strip() != '':
+    # Find the answer with the most similar question.
+    query_vec = sbert_model.encode([query])[0]
+    similarities_df = data_df.apply(
+      # CAVEAT: the 'name' attribute indicates the 'index' of the row.
+      lambda row: cosine_similarity(query_vec, embeddings[row.name]),
+      axis=1
+    )
+    best_index = similarities_df.idxmax()
 
-print(
-  "\nBest answer:",
-  data_df.iloc[[best_index]]['question'].item(),
-  data_df.iloc[[best_index]]['answer'].item()
-)
+    # Print result.
+    best_row = data_df.iloc[[best_index]] 
+    best_answer = best_row['answer'].item()
+    best_question = best_row['question'].item()
+    best_source = SOURCE_URL + '#' + best_row['id'].item()
+    print(f'\n{Fore.YELLOW}Chatbot:{Fore.RESET} {best_answer}')
+    print(f'(source: {Fore.MAGENTA}{best_source}{Fore.RESET} | {best_question})')
+    
+  # Ask for next question.
+  query = input(f'\n{Fore.GREEN}You:{Fore.RESET} ')
