@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """
 File with utility functions.
+
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """
 
 import os
@@ -52,6 +56,7 @@ def get_data():
   return data_df
 
 
+# Calculates (or loads from the cache) the embeddings of a list of phrases.
 def get_embeddings(sbert_model, phrases):
   # Check if the embeddings are already available on the cache.
   if os.path.exists(EMBEDDINGS_PATH):
