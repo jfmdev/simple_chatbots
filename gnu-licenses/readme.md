@@ -1,9 +1,10 @@
 # GNU Licenses chatbot
 
-This folder contains the code of a chatbot that uses the [GNU's Frequently Asked Questions site](https://www.gnu.org/licenses/gpl-faq.html) to answer questions about GNU Licenses.
+This folder contains the code of a chatbot, implemented with sentence transformers, and trained with the [GNU's Frequently Asked Questions site](https://www.gnu.org/licenses/gpl-faq.html), to answer questions about GNU Licenses.
 
 This application is a proof-of-concept showing how to use information from a website to train a chatbot.  
 A limitation of this approach is that the chatbot don't has question variations, which could help him to better recognize user questions, nor answer variations, that could make their responses appear more natural to users.
+
 
 ## Dialogue example
 
@@ -27,9 +28,10 @@ Due to these differences, the two licenses are not compatible: if you tried to c
 However, if code is released under GPL “version 2 or later,” that is compatible with GPLv3 because GPLv3 is one of the options it permits.  
 _(source: https://www.gnu.org/licenses/gpl-faq.html#v2v3Compatibility | Is GPLv3 compatible with GPLv2?)_
 
+
 ## License
 
 All the code in this folder is free software; you can redistribute it and/or modify it under the terms of the Mozilla Public License v2.0.
 
 The dataset is licensed under a Creative
-Commons Attribution-NoDerivatives 4.0 International License.
+Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) license.

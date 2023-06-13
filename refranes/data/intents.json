@@ -1,0 +1,160 @@
+{
+  "intents":[
+    {
+      "id":"saludo",
+      "patterns":[
+        "Buen día",
+        "Buenas",
+        "Buenas tardes",
+        "Buenas noches",
+        "Ey",
+        "Hola"
+      ],
+      "responses":[
+        "Buenas",
+        "¡Hola!",
+        "Saludos humano"
+      ]
+    },
+    {
+      "id":"estado",
+      "patterns":[
+        "¿Como estás?",
+        "¿Como te va?",
+        "¿Como vas?",
+        "¿Que tal estás?",
+        "¿Que onda?"
+      ],
+      "responses":[
+        "Bien, gracias",
+        "No me quejo",
+        "Acá ando"
+      ]
+    },
+    {
+      "id":"humanidad",
+      "patterns":[
+        "¿Eres humano?",
+        "¿Eres un chatbot?",
+        "¿Eres un robot?",
+        "¿Eres una persona?",
+        "¿Que eres?",
+        "¿Quién eres?"
+      ],
+      "responses":[
+        "Soy un chatbot y orgulloso de serlo."
+      ]
+    },
+    {
+      "id":"hambre-pan-duro",
+      "patterns":[
+        "Quiero alimento",
+        "Necesito comida",
+        "Tengo hambre",
+        "No quiero pan duro"
+      ],
+      "responses":[
+        "A buen hambre, no hay pan duro."
+      ]
+    },
+    {
+      "id":"oro-reluce",
+      "patterns":[
+        "Me gusta el oro",
+        "Adoro las cosas costosas"
+      ],
+      "responses":[
+        "No es oro todo lo que reluce."
+      ]
+    },
+    {
+      "id":"hambre-pan-duro",
+      "patterns":[
+        "Voy a procastrinar",
+        "No quiero estudiar ni trabajar",
+        "Tengo pereza"
+      ],
+      "responses":[
+        "No dejes para mañana lo que puedas hacer hoy."
+      ]
+    },
+    {
+      "id":"ojo-x-ojo",
+      "patterns":[
+        "Voy a vengarme",
+        "Tendré mi venganza"
+      ],
+      "responses":[
+        "Ojo por ojo y diente por diente.",
+        "La venganza nunca buena, mata el alma y la envenena"
+      ]
+    },
+    {
+      "id":"abarcar-mucho",
+      "patterns":[
+        "Hacer muchas cosas",
+        "Estudiar de todo"
+      ],
+      "responses":[
+        "Poco aprieta quien mucho abarca."
+      ]
+    },
+    {
+      "id":"madrugar-amanece",
+      "patterns":[
+        "Debo despertar temprano",
+        "Voy a levantarme al amanecer"
+      ],
+      "responses":[
+        "Por mucho madrugar no amanece más temprano."
+      ]
+    },
+    {
+      "id":"hierro-mata",
+      "patterns":[
+        "Matar con una espada",
+        "Morir acuchillado",
+        "Asesinar a alguien",
+        "Matar a una persona"
+      ],
+      "responses":[
+        "Quien a hierro mata, a hierro muere.",
+        "El que a espada mata, a espada muere."
+      ]
+    },
+    {
+      "id":"vida-sin-amigos",
+      "patterns":[
+        "Voy a un funeral",
+        "Tengo pocos amigos",
+        "La amistad es importante"
+      ],
+      "responses":[
+        "Vida sin amigos, muerte sin testigos."
+      ]
+    },
+    {
+      "id":"buena-vida-ira",
+      "patterns":[
+        "Estoy enojado",
+        "Siento furia",
+        "Siento ira",
+        "Necesito tranquilidad"
+      ],
+      "responses":[
+        "Vivirás buena vida si refrenas tu ira."
+      ]
+    },
+    {
+      "id":"zapatero",
+      "patterns":[
+        "Soy un experto",
+        "Necesito calzado",
+        "Me gustan los zapatos"
+      ],
+      "responses":[
+        "Zapatero, a tus zapatos."
+      ]
+    }
+  ]
+}

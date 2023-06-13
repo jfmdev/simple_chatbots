@@ -1,8 +1,10 @@
 # Simple Chatbots
 
-This repository contains examples of Chatbots implemented with Python using Matchine Learning techniques and tools.
+This repository contains examples of Chatbots implemented with Python and Matchine Learning.
 
-* The `/gnu-licenses` folder implements a chatbot that uses the [GNU's Frequently Asked Questions site](https://www.gnu.org/licenses/gpl-faq.html) to answer questions about GNU Licenses.
+* The `/refranes` folder contains a chatbot, implemented with neural networks, and trained with a JSON intents file, to answers questions (in Spanish) using common Spanish idioms.
+* The `/gnu-licenses` folder implements a chatbot, implemented with sentence tranformers, and trained with the [GNU's Frequently Asked Questions site](https://www.gnu.org/licenses/gpl-faq.html), to answer questions about GNU Licenses.
+
 
 ## License
 
