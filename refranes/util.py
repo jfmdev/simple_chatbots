@@ -11,6 +11,7 @@ import os
 import json
 import tensorflow as tf	
 import numpy as np
+import pandas as pd
 
 CACHE_FOLDER = "__mycache__"
 INTENTS_PATH = "./data/intents.json"
@@ -20,47 +21,40 @@ MODEL_PATH = f'./{CACHE_FOLDER}/model.h5'
 class Metadata:
   def __init__(
     self, 
-    all_words, 
-    all_labels, 
-    unique_words, 
-    unique_labels
+    patterns, 
+    vocabulary, 
+    labels
   ):
-    self.all_words = all_words
-    self.all_labels = all_labels
-    self.unique_words = unique_words
-    self.unique_labels = unique_labels
+    self.patterns = patterns
+    self.vocabulary = vocabulary
+    self.labels = labels
 
 
 # Generates an array to represent a phrase.
-def get_phrase_array(word_list, vocabulary):
-  array = [0 for _ in range(len(vocabulary))]
+def get_words_vector(word_list, vocabulary):
+  vector = [0 for _ in range(len(vocabulary))]
   for word in word_list:
     if word in vocabulary:
-      array[vocabulary.index(word)] = 1
-  return array
+      vector[vocabulary.index(word)] = 1
+  return vector
 
-  
+
 # Generate matrix of labels for train the model.
-def get_train_labels(all_labels, unique_labels):
-  train_labels = []
+def get_labels_train_matrix(patterns, labels_list):
+  matrix = patterns['label'].apply(
+    lambda label: get_words_vector([label], labels_list)
+  ).to_numpy()
   
-  for label in all_labels:
-    row = [0 for _ in range(len(unique_labels))]
-    row[unique_labels.index(label)] = 1
-    train_labels.append(row)
-  
-  return np.array(train_labels)
+  return np.vstack(matrix)
 
 
-# Generate matrix of words for train the model.
-def get_train_words(all_words, unique_words):
-  train_words = []
-
-  for word_list in all_words:
-    row = get_phrase_array(word_list, unique_words)
-    train_words.append(row)
+# Generate matrix of words vectors for train the model.
+def get_words_train_matrix(patterns, vocabulary):
+  matrix = patterns['words'].apply(
+    lambda word_list: get_words_vector(word_list, vocabulary)
+  ).to_numpy()
   
-  return np.array(train_words)
+  return np.vstack(matrix)
 
 
 # Generate (or load) a model trained with the intents metadata.
@@ -74,9 +68,9 @@ def get_trained_model(metadata):
       pass
   
   # Parse metadata.
-  unique_labels_count = len(metadata.unique_labels)
-  train_words = get_train_words(metadata.all_words, metadata.unique_words)
-  train_labels = get_train_labels(metadata.all_labels, metadata.unique_labels)
+  unique_labels_count = len(metadata.labels)
+  train_words = get_words_train_matrix(metadata.patterns, metadata.vocabulary)
+  train_labels = get_labels_train_matrix(metadata.patterns, metadata.labels)
   
   # Train model
   model = tf.keras.Sequential()	
@@ -105,26 +99,31 @@ def load_intents():
     intents = intents_data['intents']
 
     # Generate metadata.
-    all_labels = []
-    all_words = []
-    unique_words = []
-    unique_labels = []
+    patterns = []
+    words_list = []
+    labels_list = []
 
     # Iterate intents to generate list of labels and words.
     for intent in intents:
-      if intent['id'] not in unique_labels:
-        unique_labels.append(intent['id'])
+      # Update list of (unique) labels.
+      if intent['id'] not in labels_list:
+        labels_list.append(intent['id'])
       
-      for pattern in intent['patterns']:
-        all_labels.append(intent['id'])
+      # Iterate patterns.
+      for pattern_text in intent['patterns']:
+        pattern_words = pattern_text.split(' ')
 
-        pattern_words = pattern.split(' ')
-        all_words.append(pattern_words)
-
+        # Update list of (unique) words.
         for word in pattern_words:
-          if word not in unique_words:
-            unique_words.append(word)
-  
-    metadata = Metadata(all_words, all_labels, unique_words, unique_labels)  
+          if word not in words_list:
+            words_list.append(word)
+ 
+        # Add pattern to list.
+        patterns.append(pd.Series({
+          "label": intent['id'],
+          "words": pattern_words
+        }))
+
+    metadata = Metadata(pd.DataFrame(patterns), words_list, labels_list)  
   
   return intents, metadata
