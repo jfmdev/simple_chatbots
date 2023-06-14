@@ -4,31 +4,29 @@
       "id":"saludo",
       "patterns":[
         "Buen día",
-        "Buenas",
         "Buenas tardes",
         "Buenas noches",
         "Ey",
         "Hola"
       ],
       "responses":[
-        "Buenas",
+        "Buenas.",
         "¡Hola!",
-        "Saludos humano"
+        "Saludos humano."
       ]
     },
     {
-      "id":"estado",
+      "id":"como-estas",
       "patterns":[
         "¿Como estás?",
         "¿Como te va?",
-        "¿Como vas?",
         "¿Que tal estás?",
         "¿Que onda?"
       ],
       "responses":[
-        "Bien, gracias",
-        "No me quejo",
-        "Acá ando"
+        "Bien, gracias.",
+        "No me quejo.",
+        "Acá ando."
       ]
     },
     {
@@ -48,31 +46,38 @@
     {
       "id":"hambre-pan-duro",
       "patterns":[
-        "Quiero alimento",
-        "Necesito comida",
-        "Tengo hambre",
-        "No quiero pan duro"
+        "Almuerzo",
+        "Cena",
+        "Comida",
+        "Hambre",
+        "Merienda",
+        "Pan duro"
       ],
       "responses":[
-        "A buen hambre, no hay pan duro."
+        "A buen hambre, no hay pan duro.",
+        "Dios le da pan al que no tiene dientes." 
       ]
     },
     {
       "id":"oro-reluce",
       "patterns":[
-        "Me gusta el oro",
-        "Adoro las cosas costosas"
+        "Brillante",
+        "Costoso",
+        "Joyas",
+        "Lujo",
+        "Oro"
       ],
       "responses":[
         "No es oro todo lo que reluce."
       ]
     },
     {
-      "id":"hambre-pan-duro",
+      "id":"dejar-mañana",
       "patterns":[
-        "Voy a procastrinar",
-        "No quiero estudiar ni trabajar",
-        "Tengo pereza"
+        "No estudiar",
+        "No trabajar",
+        "Pereza",
+        "Procastrinar"
       ],
       "responses":[
         "No dejes para mañana lo que puedas hacer hoy."
@@ -81,29 +86,35 @@
     {
       "id":"ojo-x-ojo",
       "patterns":[
-        "Voy a vengarme",
-        "Tendré mi venganza"
+        "Vengar",
+        "Venganza"
       ],
       "responses":[
         "Ojo por ojo y diente por diente.",
-        "La venganza nunca buena, mata el alma y la envenena"
+        "La venganza nunca buena, mata el alma y la envenena."
       ]
     },
     {
       "id":"abarcar-mucho",
       "patterns":[
-        "Hacer muchas cosas",
-        "Estudiar de todo"
+        "Estudiar mucho",
+        "Estudiar todo",
+        "Hacer mucho",
+        "Hacer todo"
       ],
       "responses":[
-        "Poco aprieta quien mucho abarca."
+        "Poco aprieta quien mucho abarca.",
+        "Mucho abarca el que poco aprieta."
       ]
     },
     {
       "id":"madrugar-amanece",
       "patterns":[
-        "Debo despertar temprano",
-        "Voy a levantarme al amanecer"
+        "Acostar temprano",
+        "Amanecer",
+        "Despertar temprano",
+        "Levantar temprano",
+        "Madrugar"
       ],
       "responses":[
         "Por mucho madrugar no amanece más temprano."
@@ -112,10 +123,12 @@
     {
       "id":"hierro-mata",
       "patterns":[
-        "Matar con una espada",
-        "Morir acuchillado",
-        "Asesinar a alguien",
-        "Matar a una persona"
+        "Acuchillar",
+        "Asesinar",
+        "Cuchillo",
+        "Espada",
+        "Hierro",
+        "Matar"
       ],
       "responses":[
         "Quien a hierro mata, a hierro muere.",
@@ -125,9 +138,12 @@
     {
       "id":"vida-sin-amigos",
       "patterns":[
-        "Voy a un funeral",
-        "Tengo pocos amigos",
-        "La amistad es importante"
+        "Amigos",
+        "Amistad",
+        "Funeral",
+        "Muerte",
+        "Testigos",
+        "Vida y muerte"
       ],
       "responses":[
         "Vida sin amigos, muerte sin testigos."
@@ -148,9 +164,9 @@
     {
       "id":"zapatero",
       "patterns":[
-        "Soy un experto",
-        "Necesito calzado",
-        "Me gustan los zapatos"
+        "Calzado",
+        "Experto",
+        "Zapatos"
       ],
       "responses":[
         "Zapatero, a tus zapatos."

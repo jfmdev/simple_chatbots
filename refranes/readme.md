@@ -2,34 +2,31 @@
 
 This folder contains the code of a chatbot, implemented with neural networks, and trained with a JSON intents file, to answers questions (in Spanish) using common Spanish idioms.
 
-Both the code and the intents for this application are very simple and, as consequence, the answer given by the chatbot are generally more humorous than accurate.
+Since the intents file is very short, the conversational capabilities of the chatbot are very limited.
 
 
 ## Dialogue example
 
-**Tú:** Hola
+**Tú:** Hola  
+**Chatbot:** Buenas.
 
-**Chatbot:** ¡Hola!
-
-**Tú:** ¿Eres una maquina?
-
+**Tú:** ¿Eres hombre o mujer?  
 **Chatbot:** Soy un chatbot y orgulloso de serlo.
 
-**Tú:** No sé que comer
-
+**Tú:** Quiero caviar de cena  
 **Chatbot:** A buen hambre, no hay pan duro.
 
-**Tú:** Voy a matar a mi jefe
+**Tú:** Quiero matar a mi jefe  
+**Chatbot:** Quien a hierro mata, a hierro muere.
 
-**Chatbot:** No dejes para mañana lo que puedas hacer hoy.
-
-**Tú:** Usaré un cuchillo
-
-**Chatbot:** El que a espada mata, a espada muere.
-
-**Tú:** Entonces no, tengo muchas cosas que hacer
-
+**Tú:** Pero debo cobrar venganza  
 **Chatbot:** La venganza nunca buena, mata el alma y la envenena.
+
+**Tú:** Es que estoy muy enojado  
+**Chatbot:** Vivirás buena vida si refrenas tu ira.
+
+**Tú:** Está bien, creo que solo me voy a acostar temprano  
+**Chatbot:** Por mucho madrugar no amanece más temprano.
 
 
 ## License

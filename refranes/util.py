@@ -7,11 +7,17 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """
 
-import os
 import json
-import tensorflow as tf	
+import os
+import string
+from unidecode import unidecode
+
 import numpy as np
 import pandas as pd
+
+import tensorflow as tf	
+from nltk import word_tokenize
+
 
 CACHE_FOLDER = "__mycache__"
 INTENTS_PATH = "./data/intents.json"
@@ -29,6 +35,11 @@ class Metadata:
     self.vocabulary = vocabulary
     self.labels = labels
 
+
+# Remove special characters from a text and split it in a list of words.
+def tokenize_text(text):
+  text = unidecode(text.lower())
+  return [i for i in word_tokenize(text) if i not in list(string.punctuation)]
 
 # Generates an array to represent a phrase.
 def get_words_vector(word_list, vocabulary):
@@ -111,7 +122,7 @@ def load_intents():
       
       # Iterate patterns.
       for pattern_text in intent['patterns']:
-        pattern_words = pattern_text.split(' ')
+        pattern_words = tokenize_text(pattern_text)
 
         # Update list of (unique) words.
         for word in pattern_words:

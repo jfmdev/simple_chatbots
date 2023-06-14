@@ -14,7 +14,7 @@ from colorama import just_fix_windows_console as colorama_init
 from colorama import Fore
 colorama_init()
 
-from util import get_words_vector, get_trained_model, load_intents
+from util import get_words_vector, get_trained_model, load_intents, tokenize_text
 
 # Load intents and generate (or load) model.
 intents, metadata = load_intents()
@@ -32,7 +32,7 @@ while query != 'adios' and query != 'chau':
   if query.strip() != '':
     # Make prediction.
     query_array = get_words_vector(
-      query.split(' '),
+      tokenize_text(query),
       metadata.vocabulary
     )
     prediction = model.predict(np.array([query_array]))
