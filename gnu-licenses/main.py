@@ -47,10 +47,10 @@ while query != 'exit':
     best_index = similarities_df.idxmax()
 
     # Print result.
-    best_row = data_df.iloc[[best_index]] 
-    best_answer = best_row['answer'].item()
-    best_question = best_row['question'].item()
-    best_source = SOURCE_URL + '#' + best_row['id'].item()
+    best_row = data_df.iloc[best_index] 
+    best_answer = best_row['answer']
+    best_question = best_row['question']
+    best_source = SOURCE_URL + '#' + best_row['id']
     print(f'\n{Fore.YELLOW}Chatbot:{Fore.RESET} {best_answer}')
     print(f'(source: {Fore.MAGENTA}{best_source}{Fore.RESET} | {best_question})')
     
