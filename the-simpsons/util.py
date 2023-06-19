@@ -26,6 +26,17 @@ ZIP_PATH = "./data/simpsons_script_lines.zip"
 BATCH_SIZE = 100;
 
 
+# Calculates a modifier (for the cocine similarity) that increases the relevance
+# of script lines that belong to the same episode and dialog than the last match.
+def context_modifier(previous_match, current_row):
+  if previous_match is not None:
+    if previous_match['conversation_id'] == current_row['conversation_id']:
+      return 1.05
+    if previous_match['episode_id'] == current_row['episode_id']:
+      return 1.03
+  return 1
+
+
 # Calculates the cocine similarity between two word vectors.
 def cosine_similarity(u, v):
   return np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))

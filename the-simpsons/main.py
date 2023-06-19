@@ -16,7 +16,7 @@ from colorama import just_fix_windows_console as colorama_init
 from colorama import Fore
 colorama_init()
 
-from util import cosine_similarity, get_data, get_embeddings
+from util import context_modifier, cosine_similarity, get_data, get_embeddings
 
 # Load data and model.
 data_df = get_data()
@@ -32,6 +32,7 @@ print("(write 'exit' once you run out of questions)")
 print(f'{Fore.RESET}')
 
 query = ''
+match_row = None
 while query != 'exit':
   # Check that query isn't empty.
   if query.strip() != '':
@@ -41,7 +42,7 @@ while query != 'exit':
       # Ignore lines that ends the conversation.
       lambda row: 
         # CAVEAT: the 'name' attribute indicates the 'index' of the row.
-        cosine_similarity(query_vec, embeddings[row.name]) 
+        cosine_similarity(query_vec, embeddings[row.name]) * context_modifier(match_row, row)
         if not row['is_end']
         else 0,
       axis=1
